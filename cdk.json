@@ -1,0 +1,9 @@
+{
+  "app": "python3 app.py",
+  "context": {
+    "cdk_default_account": "841690643466",
+    "cdk_default_region": "us-east-2",
+    "k8s_cluster_name": "mission-dev",
+    "k8s_node_types": "t2.micro"
+  }
+}

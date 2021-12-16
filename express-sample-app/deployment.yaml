@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-app
+  labels:
+    app: express-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-app
+  template:
+    metadata:
+      labels:
+        app: express-app
+    spec:
+      containers: 
+      - image: 841690643466.dkr.ecr.us-east-1.amazonaws.com/aws-cdk/assets:7a7e3163cb0e7242016f91d4d3e4986bc9dfa120d13b1ec8a3cc89da08a0e8a1
+        imagePullPolicy: Always
+        name: express-app
+        resources:
+            requests:
+              memory: 128Mi
+              cpu: 200m
+            limits:
+              memory: 512Mi
+              cpu: 1000m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: express-app
+spec:
+  type: NodePort
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    app: express-app
